@@ -1,8 +1,11 @@
 const webpack = require('webpack')
 const { merge } = require('webpack-merge')
 const base = require('./webpack.base.config')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const SWPrecachePlugin = require('sw-precache-webpack-plugin')
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
+
+const isProd = process.env.NODE_ENV === 'production'
 
 const config = merge(base, {
   entry: {
@@ -12,6 +15,28 @@ const config = merge(base, {
     alias: {
       'create-api': './create-api-client.js'
     }
+  },
+  module: {
+    rules: [
+      {
+        test: /\.styl(us)?$/,
+        use: [
+          isProd ? {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              esModule: false,
+            },
+          } : 'vue-style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              esModule: false,
+            }
+          },
+          'stylus-loader'
+        ],
+      },
+    ],
   },
   optimization: {
     splitChunks: {
@@ -38,6 +63,9 @@ const config = merge(base, {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
       'process.env.VUE_ENV': '"client"'
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'common.[chunkhash].css'
     }),
     // // extract vendor chunks for better caching
     // new webpack.optimize.CommonsChunkPlugin({
