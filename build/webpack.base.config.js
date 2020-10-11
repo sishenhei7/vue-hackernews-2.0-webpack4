@@ -3,6 +3,7 @@ const webpack = require('webpack')
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -69,6 +70,7 @@ module.exports = {
   plugins: isProd
     ? [
         new VueLoaderPlugin(),
+        new BundleAnalyzerPlugin(),
         // new webpack.optimize.ModuleConcatenationPlugin(),
         // new MiniCssExtractPlugin({
         //   filename: 'common.[chunkhash].css'
