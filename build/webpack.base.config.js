@@ -1,6 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
@@ -31,7 +31,6 @@ module.exports = {
           compilerOptions: {
             preserveWhitespace: false
           },
-          // extractCSS: isProd,
         }
       },
       {
@@ -48,6 +47,24 @@ module.exports = {
           name: '[name].[ext]?[hash]'
         }
       },
+      // {
+      //   test: /\.styl(us)?$/,
+      //   use: [
+      //     isProd ? {
+      //       loader: MiniCssExtractPlugin.loader,
+      //       options: {
+      //         esModule: false,
+      //       },
+      //     } : 'vue-style-loader',
+      //     {
+      //       loader: 'css-loader',
+      //       options: {
+      //         esModule: false,
+      //       }
+      //     },
+      //     'stylus-loader'
+      //   ],
+      // },
       {
         test: /\.styl(us)?$/,
         use: [
@@ -58,23 +75,9 @@ module.exports = {
               esModule: false,
             }
           },
-          'stylus-loader'
-        ],
+          'stylus-loader',
+        ]
       },
-      // {
-      //   test: /\.styl(us)?$/,
-      //   use: [
-      //     {
-      //       loader: "vue-style-loader",
-      //     },
-      //     {
-      //       loader: "css-loader",
-      //     },
-      //     {
-      //       loader: "stylus-loader",
-      //     },
-      //   ]
-      // },
     ]
   },
   performance: {
@@ -85,9 +88,9 @@ module.exports = {
     ? [
         new VueLoaderPlugin(),
         // new webpack.optimize.ModuleConcatenationPlugin(),
-        // new MiniCssExtractPlugin({
-        //   filename: 'common.[chunkhash].css'
-        // })
+        new MiniCssExtractPlugin({
+          filename: 'common.[chunkhash].css'
+        })
       ]
     : [
         new VueLoaderPlugin(),

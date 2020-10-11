@@ -13,6 +13,26 @@ const config = merge(base, {
       'create-api': './create-api-client.js'
     }
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        styles: {
+          name: 'styles',
+          test: /css$/,
+          enforce: true,
+        },
+        vendor: {
+          name: 'vendor',
+          test: /[\/]node_modules[\/]/,
+          enforce: true,
+        },
+      },
+    },
+    runtimeChunk: {
+      name: 'manifest',
+    },
+  },
   plugins: [
     // strip dev-only code in Vue source
     new webpack.DefinePlugin({
