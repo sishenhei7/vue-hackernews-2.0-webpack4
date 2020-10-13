@@ -1,7 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-// const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
@@ -78,6 +78,6 @@ module.exports = {
       ]
     : [
         new VueLoaderPlugin(),
-        // new FriendlyErrorsPlugin()
+        new FriendlyErrorsPlugin()
       ]
 }
