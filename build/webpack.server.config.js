@@ -31,7 +31,6 @@ module.exports = merge(base, {
   //   // do not externalize CSS files in case we need to import it from a dep
   //   allowlist: /\.css$/
   // }),
-  // externals: ['vue', 'vue-router', 'vuex', 'vue-server-renderer'],
   externals: Object.keys(require('../package.json').dependencies),
   plugins: [
     new webpack.DefinePlugin({

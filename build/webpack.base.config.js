@@ -37,7 +37,10 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        options: {
+          presets: ['@babel/preset-env']
+        }
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
@@ -48,29 +51,15 @@ module.exports = {
           name: '[name].[ext]?[hash]'
         }
       },
-      // {
-      //   test: /\.styl(us)?$/,
-      //   use: [
-      //     'vue-style-loader',
-      //     {
-      //       loader: 'css-loader',
-      //       options: {
-      //         esModule: false,
-      //       }
-      //     },
-      //     'stylus-loader',
-      //   ]
-      // },
     ]
   },
   performance: {
     hints: false
   },
-  // plugins: [new VueLoaderPlugin()],
   plugins: isProd
     ? [
         new VueLoaderPlugin(),
-        new BundleAnalyzerPlugin(),
+        // new BundleAnalyzerPlugin(),
         // new webpack.optimize.ModuleConcatenationPlugin(),
         // new MiniCssExtractPlugin({
         //   filename: 'common.[chunkhash].css'
