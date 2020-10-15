@@ -70,6 +70,14 @@ app.use('/public', serve('./public', true))
 app.use('/manifest.json', serve('./manifest.json', true))
 app.use('/service-worker.js', serve('./dist/service-worker.js'))
 
+// workbox dir
+// const distFiles = fs.readdirSync('./dist')
+// const workboxDir = distFiles.filter(name => /workbox-.*\.js$/.test(name))
+
+// if (workboxDir.length > 0) {
+//   app.use(`/${workboxDir[0]}`, serve(`./dist/${workboxDir[0]}`))
+// }
+
 // since this app has no user-specific content, every page is micro-cacheable.
 // if your app involves user-specific content, you need to implement custom
 // logic to determine whether a request is cacheable based on its url and

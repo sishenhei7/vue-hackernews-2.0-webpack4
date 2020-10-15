@@ -78,7 +78,6 @@ if (process.env.NODE_ENV === 'production') {
     new WorkboxPlugin.GenerateSW({
       cacheId: 'vue-hn',
       swDest: 'service-worker.js',
-      // minify: true,
       clientsClaim: true,
       skipWaiting: true,
       dontCacheBustURLsMatching: /./,
