@@ -331,4 +331,12 @@ if (workboxDir.length > 0) {
 
 到这里就全部升级完毕了，详细代码可以参考[我的vue-hackernews-2.0项目](https://github.com/sishenhei7/vue-hackernews-2.0-webpack4)
 
+我学到了什么：
+
+1. 了解了一下 webpack 在 ssr 的各种配置
+2. 尝试了一些 node api
+3. 解决 bug 的能力，升级 api 的时候有各种bug，去 issue、stackoverflow、源码和其它类似项目中找解决方案。
+4. 为以后编写[cheer-fun](https://github.com/cheer-fun/pixivic-pc)的项目做准备
+
+
 
